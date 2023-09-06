@@ -33,6 +33,6 @@ build/
 .vscode/
 
 /.idea/
-/.mvn.
+/.mvn/
 /mvnw
 /mvnw.cmd
