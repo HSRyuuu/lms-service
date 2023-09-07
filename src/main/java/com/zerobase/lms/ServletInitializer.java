@@ -1,4 +1,4 @@
-package com.example.fastlms;
+package com.zerobase.lms;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
