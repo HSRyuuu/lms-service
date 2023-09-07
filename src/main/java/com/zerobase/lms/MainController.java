@@ -14,11 +14,11 @@ public class MainController {
 
     @RequestMapping("/")
     public String index() {
-        String email = "hsryu123@naver.com";
-        String subject = " 안녕하세요. 제로베이스 입니다. ";
-        String text = "<p>안녕하세요.</p><p>반갑습니다.</p>";
-
-        mailComponents.sendMail(email, subject, text);
+//        String email = "hsryu123@naver.com";
+//        String subject = " 안녕하세요. 제로베이스 입니다. ";
+//        String text = "<p>안녕하세요.</p><p>반갑습니다.</p>";
+//
+//        mailComponents.sendMail(email, subject, text);
 
         
         return "index";
