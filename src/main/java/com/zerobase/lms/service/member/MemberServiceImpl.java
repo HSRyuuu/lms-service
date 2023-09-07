@@ -5,6 +5,7 @@ import com.zerobase.lms.entity.member.MemberRepository;
 import com.zerobase.lms.model.member.MemberInput;
 import com.zerobase.lms.service.mail.MailComponents;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -46,9 +48,25 @@ public class MemberServiceImpl implements MemberService {
         String text = new StringBuilder()
                 .append("<p>fastlms 사이트 가입을 축하드립니다. </p>")
                 .append("<p>아래 링크를 클릭하셔서 가입을 완료 하세요. </p>")
-                .append("<div><a href='http://localhost:8080/member/email-auth?id=" + uuid + "'>이메일 인증하기</a></div>")
+                .append("<div><a target='_blank' href='http://localhost:8080/member/email-auth?id=" + uuid + "'>이메일 인증하기</a></div>")
                 .toString();
         mailComponents.sendMail(email, subject, text);
+    }
+
+    @Override
+    public boolean emailAuth(String uuid) {
+        Optional<Member> findMember = memberRepository.findByEmailAuthKey(uuid);
+        if (!findMember.isPresent()) {
+            log.info("Email Auth by uuid - member not found");
+            return false;
+        }
+
+        Member member = findMember.get();
+        member.setEmailAuthYn(true);
+        member.setEmailAuthDt(LocalDateTime.now());
+        memberRepository.save(member);
+        log.info("Email Auth by uuid - complete");
+        return true;
     }
 
 }
