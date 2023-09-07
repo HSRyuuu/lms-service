@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Slf4j
 @Controller
@@ -49,5 +50,16 @@ public class MemberController {
 
         return "member/email_auth";
     }
+
+//    @GetMapping("/member/info")
+//    public String memberInfo(Model model, Principal principal) {
+//
+//        String userId = principal.getName();
+//        MemberDto detail = memberService.detail(userId);
+//
+//        model.addAttribute("detail", detail);
+//
+//        return "member/info";
+//    }
 
 }

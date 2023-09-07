@@ -1,5 +1,6 @@
-package com.zerobase.lms;
+package com.zerobase.lms.config;
 
+import com.zerobase.lms.FastlmsApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

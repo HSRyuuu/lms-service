@@ -2,8 +2,9 @@ package com.zerobase.lms.service.member;
 
 
 import com.zerobase.lms.model.member.MemberInput;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface MemberService{
+public interface MemberService extends UserDetailsService {
     /**
      * 회원 가입
      */
