@@ -1,6 +1,6 @@
-package com.zerobase.lms.persist;
+package com.zerobase.lms.loginhistory;
 
-import com.zerobase.lms.persist.entity.LoginHistory;
+import com.zerobase.lms.loginhistory.LoginHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

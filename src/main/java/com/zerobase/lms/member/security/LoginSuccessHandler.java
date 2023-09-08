@@ -1,7 +1,7 @@
-package com.zerobase.lms.security;
+package com.zerobase.lms.member.security;
 
-import com.zerobase.lms.persist.entity.LoginHistory;
-import com.zerobase.lms.persist.LoginHistoryRepository;
+import com.zerobase.lms.loginhistory.LoginHistory;
+import com.zerobase.lms.loginhistory.LoginHistoryRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.zerobase.lms.model.member;
+package com.zerobase.lms.member.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,11 +1,11 @@
-package com.zerobase.lms.service.member;
+package com.zerobase.lms.member.service;
 
-import com.zerobase.lms.persist.entity.Member;
-import com.zerobase.lms.persist.MemberRepository;
-import com.zerobase.lms.exception.MemberNotEmailAuthException;
-import com.zerobase.lms.model.member.MemberInput;
-import com.zerobase.lms.model.member.ResetPasswordDto;
-import com.zerobase.lms.service.mail.MailComponents;
+import com.zerobase.lms.member.entity.Member;
+import com.zerobase.lms.member.repository.MemberRepository;
+import com.zerobase.lms.member.exception.MemberNotEmailAuthException;
+import com.zerobase.lms.member.model.MemberInput;
+import com.zerobase.lms.member.model.ResetPasswordDto;
+import com.zerobase.lms.mail.MailComponents;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -77,6 +77,11 @@ public class MemberServiceImpl implements MemberService {
         }
 
         Member member = findMember.get();
+        if(member.isEmailAuthYn()){
+            log.info("이미 활성화 된 유저 입니다.");
+            return false;
+        }
+
         member.setEmailAuthYn(true);
         member.setEmailAuthDt(LocalDateTime.now());
         memberRepository.save(member);
@@ -95,6 +100,12 @@ public class MemberServiceImpl implements MemberService {
         log.info("로그인 성공");
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        //관리자인 경우
+        if(member.isAdminYn()){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+
         return new User(member.getUserId(), member.getPassword(), grantedAuthorities);
     }
 

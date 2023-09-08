@@ -1,9 +1,9 @@
-package com.zerobase.lms.service.member;
+package com.zerobase.lms.member.service;
 
 
 
-import com.zerobase.lms.model.member.MemberInput;
-import com.zerobase.lms.model.member.ResetPasswordDto;
+import com.zerobase.lms.member.model.MemberInput;
+import com.zerobase.lms.member.model.ResetPasswordDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface MemberService extends UserDetailsService {

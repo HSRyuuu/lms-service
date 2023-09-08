@@ -1,4 +1,4 @@
-package com.zerobase.lms.service.mail;
+package com.zerobase.lms.mail;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;

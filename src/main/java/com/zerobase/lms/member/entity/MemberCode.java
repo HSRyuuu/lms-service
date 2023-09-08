@@ -1,4 +1,4 @@
-package com.zerobase.lms.persist.entity;
+package com.zerobase.lms.member.entity;
 
 public interface MemberCode {
     

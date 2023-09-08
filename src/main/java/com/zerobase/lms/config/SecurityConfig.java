@@ -1,6 +1,8 @@
-package com.zerobase.lms.security;
+package com.zerobase.lms.config;
 
-import com.zerobase.lms.service.member.MemberService;
+import com.zerobase.lms.member.security.LoginSuccessHandler;
+import com.zerobase.lms.member.security.UserAuthenticationFailureHandler;
+import com.zerobase.lms.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,21 +58,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(getFailureHandler())
                 .successHandler(getSuccessHandler())
                 .permitAll();
-
+        //로그아웃
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true);
 
+        //admin 페이지 권한
+        http.authorizeRequests()
+                .antMatchers("/admin/**")
+                .hasAuthority("ROLE_ADMIN");
 
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**")
-//                .hasAuthority("ROLE_ADMIN");
-//
-
-//
-//        http.exceptionHandling()
-//                .accessDeniedPage("/error/denied");
+        //접근 거부 시 에러 페이지 설정
+        http.exceptionHandling()
+                .accessDeniedPage("/error/denied");
 
         super.configure(http);
     }
