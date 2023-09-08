@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         , "/member/register" //회원가입
                         , "/member/email-auth" //이메일 인증
                         , "/member/find-password" //비밀번호 찾기
+                        , "/member/reset/password"
                 )
                 .permitAll();
 

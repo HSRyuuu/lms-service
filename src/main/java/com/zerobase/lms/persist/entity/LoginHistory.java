@@ -1,4 +1,4 @@
-package com.zerobase.lms.entity.loginhistory;
+package com.zerobase.lms.persist.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

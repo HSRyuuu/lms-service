@@ -1,6 +1,5 @@
 package com.zerobase.lms.model.member;
 
-import com.zerobase.lms.entity.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

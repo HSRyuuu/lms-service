@@ -1,4 +1,4 @@
-package com.zerobase.lms.entity.member;
+package com.zerobase.lms.persist.entity;
 
 import com.zerobase.lms.model.member.MemberInput;
 import lombok.AllArgsConstructor;
