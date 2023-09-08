@@ -1,4 +1,4 @@
-package com.zerobase.lms.member.security;
+package com.zerobase.lms.config.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
@@ -26,7 +26,7 @@ public class UserAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
         setDefaultFailureUrl("/member/login?error=true");
         request.setAttribute("errorMessage", msg);
 
-        log.info(msg);
+        log.info(msg + "AuthenticationFailure");
 
         super.onAuthenticationFailure(request, response, exception);
     }

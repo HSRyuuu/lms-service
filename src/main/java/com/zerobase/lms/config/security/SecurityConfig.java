@@ -1,7 +1,5 @@
-package com.zerobase.lms.config;
+package com.zerobase.lms.config.security;
 
-import com.zerobase.lms.member.security.LoginSuccessHandler;
-import com.zerobase.lms.member.security.UserAuthenticationFailureHandler;
 import com.zerobase.lms.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll();
 
-        //로그인 페이지
+        //로그인
         http.formLogin()
                 .loginPage("/member/login")
                 .failureHandler(getFailureHandler())

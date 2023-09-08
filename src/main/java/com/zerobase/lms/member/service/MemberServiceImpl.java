@@ -90,26 +90,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findById(username)
-                .orElseThrow(() -> new UsernameNotFoundException("회원 정보가 존재하지 않습니다."));
-
-        if(!member.isEmailAuthYn()){
-            throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인을 해 주세요.");
-        }
-        log.info("로그인 성공");
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-        //관리자인 경우
-        if(member.isAdminYn()){
-            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }
-
-        return new User(member.getUserId(), member.getPassword(), grantedAuthorities);
-    }
-
-    @Override
     public boolean sendResetPassword(ResetPasswordDto parameter) {
 
         Member member = memberRepository.findByUserIdAndUserName(parameter.getUserId(), parameter.getUserName())
@@ -167,6 +147,27 @@ public class MemberServiceImpl implements MemberService {
 
         return true;
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Member member = memberRepository.findById(username)
+                .orElseThrow(() -> new UsernameNotFoundException("회원 정보가 존재하지 않습니다."));
+
+        if(!member.isEmailAuthYn()){
+            throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인을 해 주세요.");
+        }
+        log.info("로그인 성공");
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        //관리자인 경우
+        if(member.isAdminYn()){
+            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+
+        return new User(member.getUserId(), member.getPassword(), grantedAuthorities);
+    }
+
 }
 
 

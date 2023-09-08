@@ -21,8 +21,6 @@ public class MemberController {
 
     /**
      * 회원가입
-     *
-     * @return
      */
     @GetMapping("/member/register")
     public String register() {
@@ -32,6 +30,7 @@ public class MemberController {
 
     @PostMapping("/member/register")
     public String registerSubmit(Model model, MemberInput parameter) {
+        log.info("회원가입 : {}", parameter);
         boolean result = memberService.register(parameter);
 
         model.addAttribute("result", result);

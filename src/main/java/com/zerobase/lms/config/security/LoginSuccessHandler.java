@@ -1,4 +1,4 @@
-package com.zerobase.lms.member.security;
+package com.zerobase.lms.config.security;
 
 import com.zerobase.lms.loginhistory.LoginHistory;
 import com.zerobase.lms.loginhistory.LoginHistoryRepository;
