@@ -1,4 +1,4 @@
-package com.zerobase.lms.web.controller.member;
+package com.zerobase.lms.member.controller;
 
 import com.zerobase.lms.member.model.MemberInput;
 import com.zerobase.lms.member.model.ResetPasswordDto;

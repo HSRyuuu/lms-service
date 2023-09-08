@@ -1,19 +1,13 @@
 package com.zerobase.lms.admin.service;
 
-import com.zerobase.lms.mail.MailComponents;
-import com.zerobase.lms.member.entity.Member;
-import com.zerobase.lms.member.exception.MemberNotEmailAuthException;
-import com.zerobase.lms.member.repository.MemberRepository;
+import com.zerobase.lms.admin.dto.MemberDto;
+import com.zerobase.lms.admin.mapper.MemberMapper;
+import com.zerobase.lms.admin.model.MemberParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -21,11 +15,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberAdminServiceImpl implements MemberAdminService {
 
-    private final MemberRepository memberRepository;
+    private final MemberMapper memberMapper;
 
     @Override
-    public List<Member> list() {
-        return memberRepository.findAll();
+    public List<MemberDto> list(MemberParam parameter) {
+        long totalCount = memberMapper.selectListCount(parameter);
+        List<MemberDto> list = memberMapper.selectList(parameter);
+
+        if(!CollectionUtils.isEmpty(list)){
+            int i = 0;
+            for(MemberDto x : list){
+                x.setTotalCount(totalCount);
+                x.setSeq(totalCount - parameter.getPageStart() - i++);
+            }
+        }
+        return list;
     }
 
 
