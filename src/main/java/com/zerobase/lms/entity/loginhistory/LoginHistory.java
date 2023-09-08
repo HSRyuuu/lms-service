@@ -23,7 +23,7 @@ public class LoginHistory {
 
     private String userId;
     private LocalDateTime loginDt;
-    private String accessIp;
+    private String remoteAddr;
     private String userAgent;
 
 }

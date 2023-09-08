@@ -1,5 +1,6 @@
 package com.zerobase.lms.service.member;
 
+import com.zerobase.lms.entity.loginhistory.LoginHistoryRepository;
 import com.zerobase.lms.entity.member.Member;
 import com.zerobase.lms.entity.member.MemberRepository;
 import com.zerobase.lms.exception.MemberNotEmailAuthException;
@@ -29,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final MailComponents mailComponents;
+    private final LoginHistoryRepository loginHistoryRepository;
 
     /**
      * 회원 가입
@@ -88,6 +90,8 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findById(username)
@@ -96,7 +100,7 @@ public class MemberServiceImpl implements MemberService {
         if(!member.isEmailAuthYn()){
             throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인을 해 주세요.");
         }
-
+        log.info("로그인 성공");
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         return new User(member.getUserId(), member.getPassword(), grantedAuthorities);

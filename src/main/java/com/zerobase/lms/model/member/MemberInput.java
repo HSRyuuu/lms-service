@@ -15,11 +15,11 @@ public class MemberInput {
     private String userName;
     private String phone;
     private String password;
-    
+
     private String newPassword;
-    
+
     private String zipcode;
     private String addr;
     private String addrDetail;
-    
+
 }
