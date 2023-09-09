@@ -30,3 +30,11 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+devtools:
+  livereload:
+    enabled: true
+  restart:
+    enabled: true
+  thymeleaf:
+    cache: false

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -43,9 +44,9 @@ public class CourseController extends BaseController {
     
     @GetMapping("/course/{id}")
     public String courseDetail(Model model
-            , CourseParam parameter) {
+            , @PathVariable long id) {
         
-        CourseDto detail = courseService.frontDetail(parameter.getId());
+        CourseDto detail = courseService.frontDetail(id);
         model.addAttribute("detail", detail);
         
         return "course/detail";
