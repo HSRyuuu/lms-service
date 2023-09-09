@@ -12,22 +12,22 @@ public interface MemberAdminService{
      * 회원 목록 리턴(관리자에서만 사용 가능)
      */
      List<MemberDto> list(MemberParam parameter);
-//
-//    /**
-//     * 회원 상세 정보
-//     */
-//    MemberDto detail(String userId);
-//
-//    /**
-//     * 회원 상태 변경
-//     */
-//    boolean updateStatus(String userId, String userStatus);
-//
-//    /**
-//     * 회원 비밀번호 초기화
-//     */
-//    boolean updatePassword(String userId, String password);
-//
+
+    /**
+     * 회원 상세 정보
+     */
+    MemberDto detail(String userId);
+
+    /**
+     * 회원 상태 변경
+     */
+    boolean updateStatus(String userId, String userStatus);
+
+    /**
+     * 회원 비밀번호 초기화
+     */
+    boolean updatePassword(String userId, String password);
+
 //    /**
 //     * 회원정보 수정
 //     */

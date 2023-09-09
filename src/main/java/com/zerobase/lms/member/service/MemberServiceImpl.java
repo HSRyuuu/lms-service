@@ -1,6 +1,7 @@
 package com.zerobase.lms.member.service;
 
 import com.zerobase.lms.member.entity.Member;
+import com.zerobase.lms.member.exception.MemberStopUserException;
 import com.zerobase.lms.member.repository.MemberRepository;
 import com.zerobase.lms.member.exception.MemberNotEmailAuthException;
 import com.zerobase.lms.member.model.MemberInput;
@@ -52,6 +53,7 @@ public class MemberServiceImpl implements MemberService {
         //parameter를 Member 엔티티로 변환 후 이메일 인증 키 설정 후 저장
         Member member = Member.fromMemberInput(parameter);
         member.setEmailAuthKey(uuid);
+        member.setUserStatus(Member.MEMBER_STATUS_REQ);
         memberRepository.save(member);
 
         String email = parameter.getUserId();
@@ -81,7 +83,7 @@ public class MemberServiceImpl implements MemberService {
             log.info("이미 활성화 된 유저 입니다.");
             return false;
         }
-
+        member.setUserStatus(Member.MEMBER_STATUS_ING);
         member.setEmailAuthYn(true);
         member.setEmailAuthDt(LocalDateTime.now());
         memberRepository.save(member);
@@ -153,10 +155,14 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("회원 정보가 존재하지 않습니다."));
 
-        if(!member.isEmailAuthYn()){
+        if(Member.MEMBER_STATUS_REQ.equals(member.getUserStatus())){
             throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인을 해 주세요.");
         }
-        log.info("로그인 성공");
+        if (Member.MEMBER_STATUS_STOP.equals(member.getUserStatus())){
+            throw new MemberStopUserException("정지된 회원 입니다.");
+        }
+
+        log.info("로그인 성공 [ ID :{} ]", member.getUserId());
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
