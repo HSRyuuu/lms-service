@@ -1,7 +1,7 @@
 package com.zerobase.fastlms.config.security;
 
-import com.zerobase.fastlms.loginhistory.LoginHistory;
-import com.zerobase.fastlms.loginhistory.LoginHistoryRepository;
+import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
+import com.zerobase.fastlms.admin.loginhistory.LoginHistoryRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

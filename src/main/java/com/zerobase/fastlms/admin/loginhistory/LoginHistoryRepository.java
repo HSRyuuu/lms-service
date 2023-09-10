@@ -1,4 +1,4 @@
-package com.zerobase.fastlms.loginhistory;
+package com.zerobase.fastlms.admin.loginhistory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

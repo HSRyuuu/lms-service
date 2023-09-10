@@ -1,4 +1,4 @@
-package com.zerobase.fastlms.loginhistory;
+package com.zerobase.fastlms.admin.loginhistory;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

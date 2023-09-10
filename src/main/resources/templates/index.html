@@ -8,5 +8,18 @@
     <h1>메인 페이지 </h1>
     <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
 
+    <div th:each="x : ${list}">
+
+        <a th:if="${x.newWindowYn eq true}" th:href="${x.linkedUrl}" target="_blank">
+            <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+        </a>
+        <a th:if="${x.newWindowYn eq false}" th:href="${x.linkedUrl}" >
+        <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+        </a>
+
+
+    </div>
+
+
 </body>
 </html>
