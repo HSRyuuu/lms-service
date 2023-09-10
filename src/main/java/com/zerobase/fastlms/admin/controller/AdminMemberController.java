@@ -1,9 +1,9 @@
 package com.zerobase.fastlms.admin.controller;
 
 import com.zerobase.fastlms.admin.dto.MemberDto;
+import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
 import com.zerobase.fastlms.admin.model.MemberInput;
 import com.zerobase.fastlms.admin.model.MemberParam;
-import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
 import com.zerobase.fastlms.member.service.MemberService;
 import com.zerobase.fastlms.util.PageUtil;
 import lombok.RequiredArgsConstructor;
@@ -71,16 +71,5 @@ public class AdminMemberController {
 
         return "redirect:/admin/member/detail.do?userId=" + parameter.getUserId();
     }
-
-    @GetMapping("/admin/member/history.do")
-    public String loginHistory(@RequestParam String userId, Model model){
-        List<LoginHistory> list = memberService.loginHistoryList(userId);
-
-        model.addAttribute("list", list);
-
-        return "admin/member/history";
-    }
-
-
 
 }

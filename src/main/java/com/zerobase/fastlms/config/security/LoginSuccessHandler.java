@@ -2,7 +2,6 @@ package com.zerobase.fastlms.config.security;
 
 import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
 import com.zerobase.fastlms.admin.loginhistory.LoginHistoryRepository;
-
 import com.zerobase.fastlms.member.entity.Member;
 import com.zerobase.fastlms.member.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;

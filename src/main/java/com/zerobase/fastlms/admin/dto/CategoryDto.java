@@ -14,29 +14,29 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CategoryDto {
-    
+
     Long id;
     String categoryName;
     int sortValue;
     boolean usingYn;
-    
-    
+
+
     //ADD COLUMNS
     int courseCount;
-    
-    
-    public static List<CategoryDto> of (List<Category> categories) {
+
+
+    public static List<CategoryDto> of(List<Category> categories) {
         if (categories != null) {
             List<CategoryDto> categoryList = new ArrayList<>();
-            for(Category x : categories) {
+            for (Category x : categories) {
                 categoryList.add(of(x));
             }
             return categoryList;
         }
-        
+
         return null;
     }
-    
+
     public static CategoryDto of(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
@@ -45,6 +45,6 @@ public class CategoryDto {
                 .usingYn(category.isUsingYn())
                 .build();
     }
-    
-    
+
+
 }

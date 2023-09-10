@@ -33,14 +33,13 @@ public class AdminBannerController {
         return "admin/banner/list";
     }
 
-
     @GetMapping("/admin/banner/add.do")
     public String addBanner() {
         return "admin/banner/add";
     }
 
     @PostMapping("/admin/banner/add.do")
-    public String addBannerSubmit(Model model, MultipartFile file,
+    public String addBannerSubmit(MultipartFile file,
                                   BannerInput parameter) {
         saveFile(file, parameter);
         parameter.setCreateDt(LocalDateTime.now());
@@ -49,7 +48,7 @@ public class AdminBannerController {
     }
 
     @GetMapping("/admin/banner/edit.do")
-    public String editBanner(Model model, BannerInput parameter){
+    public String editBanner(Model model, BannerInput parameter) {
         Banner find = bannerService.findById(parameter.getId());
         model.addAttribute("detail", find);
 
@@ -57,10 +56,10 @@ public class AdminBannerController {
     }
 
     @PostMapping("/admin/banner/edit.do")
-    public String editBannerSubmit(BannerInput parameter, MultipartFile file){
-        if(!file.isEmpty()){
+    public String editBannerSubmit(BannerInput parameter, MultipartFile file) {
+        if (!file.isEmpty()) {
             saveFile(file, parameter);
-        }else{
+        } else {
             Banner find = bannerService.findById(parameter.getId());
             parameter.setFileName(find.getFileName());
             parameter.setUrlFileName(find.getUrlFileName());
@@ -73,12 +72,12 @@ public class AdminBannerController {
 
 
     @PostMapping("/admin/banner/delete.do")
-    public String delete(BannerInput bannerInput){
+    public String delete(BannerInput bannerInput) {
         bannerService.delete(bannerInput.getId());
         return "redirect:/admin/banner/list.do";
     }
 
-    private void saveFile(MultipartFile file, BannerInput parameter){
+    private void saveFile(MultipartFile file, BannerInput parameter) {
         String saveFilename = "";
         String urlFilename = "";
 
@@ -101,6 +100,7 @@ public class AdminBannerController {
                 log.info(e.getMessage());
             }
         }
+
         parameter.setFileName(saveFilename);
         parameter.setUrlFileName(urlFilename);
     }

@@ -5,7 +5,7 @@ public class PageUtil {
     /**
      * 전체개수
      */
-    private long totalCount;
+    private final long totalCount;
 
     /**
      * 한페이지에 나오는 개수
@@ -40,7 +40,7 @@ public class PageUtil {
     /**
      * 페이지 이동시 전달되는 파라미터(쿼리스트링)
      */
-    private String queryString;
+    private final String queryString;
 
 
     public PageUtil(long totalCount, long pageSize, long pageIndex, String queryString) {

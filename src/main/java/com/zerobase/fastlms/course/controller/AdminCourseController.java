@@ -2,7 +2,6 @@ package com.zerobase.fastlms.course.controller;
 
 
 import com.zerobase.fastlms.admin.service.CategoryService;
-import com.zerobase.fastlms.banner.model.BannerInput;
 import com.zerobase.fastlms.course.dto.CourseDto;
 import com.zerobase.fastlms.course.model.CourseInput;
 import com.zerobase.fastlms.course.model.CourseParam;
@@ -22,9 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor

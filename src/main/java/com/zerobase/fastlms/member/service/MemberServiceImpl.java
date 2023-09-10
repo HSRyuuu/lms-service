@@ -1,11 +1,11 @@
 package com.zerobase.fastlms.member.service;
 
 import com.zerobase.fastlms.admin.dto.MemberDto;
+import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
+import com.zerobase.fastlms.admin.loginhistory.LoginHistoryRepository;
 import com.zerobase.fastlms.admin.mapper.MemberMapper;
 import com.zerobase.fastlms.admin.model.MemberParam;
 import com.zerobase.fastlms.course.model.ServiceResult;
-import com.zerobase.fastlms.admin.loginhistory.LoginHistory;
-import com.zerobase.fastlms.admin.loginhistory.LoginHistoryRepository;
 import com.zerobase.fastlms.mail.MailComponents;
 import com.zerobase.fastlms.member.entity.Member;
 import com.zerobase.fastlms.member.entity.MemberCode;
@@ -69,11 +69,9 @@ public class MemberServiceImpl implements MemberService {
 
         String email = parameter.getUserId();
         String subject = "fastlms 사이트 가입을 축하드립니다. ";
-        String text = new StringBuilder()
-                .append("<p>fastlms 사이트 가입을 축하드립니다. </p>")
-                .append("<p>아래 링크를 클릭하셔서 가입을 완료 하세요. </p>")
-                .append("<div><a target='_blank' href='http://localhost:8080/member/email-auth?id=" + uuid + "'>이메일 인증하기</a></div>")
-                .toString();
+        String text = "<p>fastlms 사이트 가입을 축하드립니다. </p>" +
+                "<p>아래 링크를 클릭하셔서 가입을 완료 하세요. </p>" +
+                "<div><a target='_blank' href='http://localhost:8080/member/email-auth?id=" + uuid + "'>이메일 인증하기</a></div>";
         //메일 발송
         mailComponents.sendMail(email, subject, text);
 
