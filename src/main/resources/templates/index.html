@@ -14,10 +14,27 @@
                 auto : true, //자동으로 애니메이션 시작
                 speed : 500, //애니메이션 속도
                 pause : 5000, //애니메이션 유지시간(1000 = 1초)
-                mode : 'horizontal' //슬라이드 모드('fade','horizontal',vertcal' 이 있음)
+                mode : 'horizontal', //슬라이드 모드('fade','horizontal',vertcal' 이 있음)
+                autoHover: true
             });
         });
     </script>
+    <style>
+        .banner{
+            width: 60%;
+            height: 200px;
+        }
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .centered-image {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
 <body>
 <h1>메인 페이지 </h1>
@@ -25,12 +42,16 @@
 
 
 <div class="bxslider">
-    <div th:each="x : ${list}">
-        <a th:if="${x.newWindowYn eq true}" th:href="${x.linkedUrl}" target="_blank">
-            <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+    <div class="banner" th:each="x : ${list}">
+        <a class="image" th:if="${x.newWindowYn eq true}" th:href="${x.linkedUrl}" target="_blank">
+            <div class="centered">
+                <img class="centered-image" th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+            </div>
         </a>
-        <a th:if="${x.newWindowYn eq false}" th:href="${x.linkedUrl}">
-            <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+        <a class="image" th:if="${x.newWindowYn eq false}" th:href="${x.linkedUrl}">
+            <div class="centered">
+                <img class="centered-image" th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+            </div>
         </a>
     </div>
 </div>
