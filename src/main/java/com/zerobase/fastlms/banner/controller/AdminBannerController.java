@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -42,8 +43,8 @@ public class AdminBannerController {
     public String addBannerSubmit(Model model, MultipartFile file,
                                   BannerInput parameter) {
         saveFile(file, parameter);
+        parameter.setCreateDt(LocalDateTime.now());
         bannerService.add(parameter);
-
         return "redirect:/admin/banner/list.do";
     }
 

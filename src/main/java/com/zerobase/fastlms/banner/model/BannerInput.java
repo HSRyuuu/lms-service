@@ -3,6 +3,8 @@ package com.zerobase.fastlms.banner.model;
 import lombok.Data;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Data
 @ToString
 public class BannerInput {
@@ -16,4 +18,5 @@ public class BannerInput {
 
     String fileName;
     String urlFileName;
+    LocalDateTime createDt;
 }

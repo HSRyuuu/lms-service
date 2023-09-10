@@ -54,6 +54,9 @@
                 배너 명
             </th>
             <th>
+                이미지
+            </th>
+            <th>
                 이동 url
             </th>
 
@@ -62,6 +65,9 @@
             </th>
             <th>
                 정렬 순서
+            </th>
+            <th>
+                등록일
             </th>
             <th>
                 비고
@@ -76,13 +82,16 @@
                 </td>
 
                 <td th:if="${x.usingYn eq true}">
-                    <p>사용중</p>
+                    <p>공개</p>
                 </td>
                 <td th:if="${x.usingYn eq false}">
-                    <p>사용 중지</p>
+                    <p> - </p>
                 </td>
                 <td>
                     <p th:text="${x.bannerName}">banner name</p>
+                </td>
+                <td>
+                    <img th:src="${x.urlFileName}"/>
                 </td>
                 <td>
                     <p th:text="${x.linkedUrl}">banner name</p>
@@ -93,6 +102,9 @@
                 </td>
                 <td>
                     <p th:text="${x.sortValue}">alter text</p>
+                </td>
+                <td>
+                    <p th:text="${x.createDt}">alter text</p>
                 </td>
                 <td>
                     <div class="inline-div">
