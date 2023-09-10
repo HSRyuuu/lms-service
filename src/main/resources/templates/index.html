@@ -3,22 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>메인 페이지</title>
+
+    <link href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.bxslider').bxSlider({
+                touchEnabled:(navigator.maxTouchPoints > 0),
+                auto : true, //자동으로 애니메이션 시작
+                speed : 500, //애니메이션 속도
+                pause : 5000, //애니메이션 유지시간(1000 = 1초)
+                mode : 'horizontal' //슬라이드 모드('fade','horizontal',vertcal' 이 있음)
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1>메인 페이지 </h1>
-    <div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
+<h1>메인 페이지 </h1>
+<div th:replace="/fragments/layout.html :: fragment-body-menu"></div>
 
+
+<div class="bxslider">
     <div th:each="x : ${list}">
-
         <a th:if="${x.newWindowYn eq true}" th:href="${x.linkedUrl}" target="_blank">
             <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
         </a>
-        <a th:if="${x.newWindowYn eq false}" th:href="${x.linkedUrl}" >
-        <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
+        <a th:if="${x.newWindowYn eq false}" th:href="${x.linkedUrl}">
+            <img th:src="${x.urlFileName}" th:alt="${x.alterText}"/>
         </a>
-
-
     </div>
+</div>
 
 
 </body>
