@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,17 +32,20 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         String userAgent = request.getHeader("User-Agent");
         log.info("[ login ] member: {}, remoteAddr: {}, userAgent: {}", name, remoteAddr, userAgent);
 
-        Member member = memberRepository.findById(name)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 사용자 입니다."));
-        member.setLastLoginDt(LocalDateTime.now());
-        memberRepository.save(member);
-
+        this.updateMemberLoginDt(name);
         this.saveHistory(name, remoteAddr, userAgent);
 
         response.sendRedirect("/");
     }
+    private void updateMemberLoginDt(String name){
+        Member member = memberRepository.findById(name)
+                .orElseThrow(() -> new RuntimeException("존재 하지 않는 사용자 입니다."));
+        member.setLastLoginDt(LocalDateTime.now());
+        memberRepository.save(member);
+    }
 
     private void saveHistory(String name, String remoteAddr, String userAgent) {
+
         loginHistoryRepository.save(LoginHistory.builder()
                 .userId(name)
                 .loginDt(LocalDateTime.now())
@@ -51,6 +53,4 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                 .userAgent(userAgent)
                 .build());
     }
-
-
 }
