@@ -37,6 +37,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         response.sendRedirect("/");
     }
+
     private void updateMemberLoginDt(String name){
         Member member = memberRepository.findById(name)
                 .orElseThrow(() -> new RuntimeException("존재 하지 않는 사용자 입니다."));
@@ -45,7 +46,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     }
 
     private void saveHistory(String name, String remoteAddr, String userAgent) {
-
         loginHistoryRepository.save(LoginHistory.builder()
                 .userId(name)
                 .loginDt(LocalDateTime.now())
