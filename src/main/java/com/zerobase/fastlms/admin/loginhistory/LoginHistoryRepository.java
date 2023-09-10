@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long> {
-    List<LoginHistory> findTop20ByUserIdOrderByIdDesc(String userId);
+    List<LoginHistory> findTop10ByUserIdOrderByIdDesc(String userId);
 }

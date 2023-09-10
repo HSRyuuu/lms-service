@@ -44,11 +44,13 @@ public class AdminMemberController {
 
     @GetMapping("/admin/member/detail.do")
     public String detail(Model model, MemberParam parameter) {
-
         parameter.init();
 
         MemberDto member = memberService.detail(parameter.getUserId());
         model.addAttribute("member", member);
+
+        List<LoginHistory> historyList = memberService.loginHistoryList(parameter.getUserId());
+        model.addAttribute("historyList", historyList);
 
         return "admin/member/detail";
     }

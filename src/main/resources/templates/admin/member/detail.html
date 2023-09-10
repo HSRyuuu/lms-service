@@ -12,15 +12,25 @@
             border:solid 1px #000;
         }
 
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #a8a8a8;
+        }
+        .list table thead{
+            background-color: #464646;
+        }
+        .list table th, .list table td {
+            border:solid 1px #000;
+        }
+
     </style>
 </head>
 <body>
     <div th:replace="/fragments/layout.html :: fragment-admin-body-menu"></div>
     <h1>관리자 회원 관리 - 회원 상세 정보</h1>
 
-    <div>
-        <a href="history.do" th:href="${'history.do?userId=' + member.userId}"> 로그인 히스토리 </a>
-    </div>
+
 
     <div class="detail" >
 
@@ -104,6 +114,35 @@
         </div>
 
 
+    </div>
+
+    <h5>최근 로그인 정보 (최대 10건)</h5>
+
+    <div class="list">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>
+                    로그인 일시
+                </th>
+                <th>
+                    접속 IP
+                </th>
+                <th>
+                    User-Agent
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="x : ${historyList}">
+                <td th:text="${x.id}">1</td>
+                <td th:text="${x.loginDt}">yyyy-MM-dd</td>
+                <td th:text="${x.remoteAddr}">127.0.0.1</td>
+                <td th:text="${x.userAgent}">CROME</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 

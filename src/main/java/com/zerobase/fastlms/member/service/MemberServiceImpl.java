@@ -224,7 +224,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<LoginHistory> loginHistoryList(String userId) {
-        return loginHistoryRepository.findTop20ByUserIdOrderByIdDesc(userId);
+        return loginHistoryRepository.findTop10ByUserIdOrderByIdDesc(userId);
     }
 
 

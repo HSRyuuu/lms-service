@@ -25,7 +25,6 @@ public class MemberDto {
     boolean emailAuthYn;
     LocalDateTime emailAuthDt;
     String emailAuthKey;
-    
     String resetPasswordKey;
     LocalDateTime resetPasswordLimitDt;
     
@@ -39,6 +38,8 @@ public class MemberDto {
     //추가컬럼
     long totalCount;
     long seq;
+
+    LocalDateTime lastLoginDt;
     
 
     public static MemberDto of(Member member) {
